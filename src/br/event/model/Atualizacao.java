@@ -4,6 +4,7 @@ public class Atualizacao {
 	private int idAtualizacao;
 	private long dtUltimaAtualizacao;
 	private int QtdRegistrosAtualizados;
+	
 	public int getIdAtualizacao() {
 		return idAtualizacao;
 	}

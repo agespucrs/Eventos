@@ -2,6 +2,9 @@ package br.event.model;
 
 import java.util.ArrayList;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement
 public class Atividade {
   private int idAtividade;
   private int idLocal;
@@ -15,11 +18,10 @@ public class Atividade {
   private long horaFim;
   private long dtCadastro;
   private long dtAlteracao;
-  
   private ArrayList<Palestrante> palestrantes;
   
   public Atividade() {
-		// TODO Auto-generated constructor stub
+		
 	}
 
 public int getIdAtividade() {
