@@ -54,7 +54,8 @@ public class ClienteDAO extends ConnectionFactory {
 		conexao = criarConexao();
 		clientes = new ArrayList<Cliente>();
 		try {
-			pstmt = conexao.prepareStatement("select c.id, c.nome, c.cpf, c.endereco from android.cliente c where c.dtCadastro > (select max(d.DT_ULTIMA_ATUALIZACAO)  from android.TB_ATUALIZACAO d);rs = pstmt.executeQuery()");
+			pstmt = conexao.prepareStatement("select c.id, c.nome, c.cpf, c.endereco from android.cliente c where c.dtCadastro > (select max(d.DT_ULTIMA_ATUALIZACAO)  from android.TB_ATUALIZACAO d)");
+			rs = pstmt.executeQuery();
 			
 			while(rs.next()){
 				Cliente cliente = new Cliente();
