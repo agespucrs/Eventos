@@ -1,5 +1,6 @@
 package br.event.resource;
 
+import java.sql.SQLException;
 import java.util.ArrayList; 
 
 import javax.ws.rs.GET;
@@ -30,11 +31,13 @@ public class ClienteResource {
 	 * @author Douglas Costa <douglas.cst90@gmail.com.br>
 	 * @since 17/02/2013 02:07:08
 	 * @version 1.0
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
 	@GET
 	@Path("/listarTodos")
 	@Produces("application/json")
-	public ArrayList<Cliente> listarTodos(){
+	public ArrayList<Cliente> listarTodos() throws ClassNotFoundException, SQLException{
 		return new ClienteController().listarTodos();
 	}
 }
