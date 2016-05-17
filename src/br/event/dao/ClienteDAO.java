@@ -3,10 +3,12 @@ package br.event.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 
 import br.event.factory.ConnectionFactory;
 import br.event.model.Cliente;
+import br.event.util.ConexaoUtil;
 
 /**
  * 
@@ -44,14 +46,16 @@ public class ClienteDAO extends ConnectionFactory {
 	 * @author Douglas Costa <douglas.cst90@gmail.com.br>
 	 * @since 17/02/2013 02:01:35
 	 * @version 1.0
+	 * @throws SQLException 
+	 * @throws ClassNotFoundException 
 	 */
-	public ArrayList<Cliente> listarTodos(){
+	public ArrayList<Cliente> listarTodos() throws ClassNotFoundException, SQLException{
 		Connection conexao = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		ArrayList<Cliente> clientes = null;
 		
-		conexao = criarConexao();
+		conexao = ConexaoUtil.getConexao();
 		clientes = new ArrayList<Cliente>();
 		try {
 			pstmt = conexao.prepareStatement("select c.id, c.nome, c.cpf, c.endereco from android.cliente c where c.dtCadastro > (select max(d.DT_ULTIMA_ATUALIZACAO)  from android.TB_ATUALIZACAO d)");

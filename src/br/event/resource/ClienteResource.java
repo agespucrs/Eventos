@@ -1,12 +1,12 @@
 package br.event.resource;
 
-import java.util.ArrayList;
+import java.util.ArrayList; 
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
-import br.event.controller.ClienteController;
+import br.event.bo.ClienteController;
 import br.event.model.Cliente;
 
 import com.google.gson.Gson;
