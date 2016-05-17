@@ -6,8 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 
-import br.event.factory.ConnectionFactory;
-import br.event.model.Cliente;
+import br.event.model.Atividade;
 import br.event.util.ConexaoUtil;
 
 /**
@@ -18,9 +17,9 @@ import br.event.util.ConexaoUtil;
  * @since 17/02/2013 01:55:13
  * @version 1.0
  */
-public class ClienteDAO{
+public class AtividadeDAO {
 
-	private static ClienteDAO instance;
+	private static AtividadeDAO instance;
 	
 	
 	/**
@@ -32,9 +31,9 @@ public class ClienteDAO{
 	 * @since 17/02/2013 02:03:47
 	 * @version 1.0
 	 */
-	public static ClienteDAO getInstance(){
+	public static AtividadeDAO getInstance(){
 		if(instance == null)
-			instance = new ClienteDAO();
+			instance = new AtividadeDAO();
 		return instance;
 	}
 	
@@ -49,34 +48,41 @@ public class ClienteDAO{
 	 * @throws SQLException 
 	 * @throws ClassNotFoundException 
 	 */
-	public ArrayList<Cliente> listarTodos() throws ClassNotFoundException, SQLException{
+	public ArrayList<Atividade> listarTodos() throws ClassNotFoundException, SQLException{
 		Connection conexao = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
-		ArrayList<Cliente> clientes = null;
+		ArrayList<Atividade> atividades = null;
 		
 		conexao = ConexaoUtil.getConexao();
-		clientes = new ArrayList<Cliente>();
+		atividades = new ArrayList<Atividade>();
 		try {
-			pstmt = conexao.prepareStatement("select c.id, c.nome, c.cpf, c.endereco from android.cliente c where c.dtCadastro > (select max(d.DT_ULTIMA_ATUALIZACAO)  from android.TB_ATUALIZACAO d)");
+			pstmt = conexao.prepareStatement("select * from event_e.TB_ATIVIDADE)");
 			rs = pstmt.executeQuery();
 			
 			while(rs.next()){
-				Cliente cliente = new Cliente();
+				Atividade atividade = new Atividade();
 				
-				cliente.setId(rs.getInt("id"));
-				cliente.setNome(rs.getString("nome"));
-				cliente.setCpf(rs.getString("cpf"));
-				cliente.setEndereco(rs.getString("endereco"));
-				
-				clientes.add(cliente);
+				atividade.setIdAtividade(rs.getInt("ID_ATIVIDADE"));
+				atividade.setIdLocal(rs.getInt("ID_LOCAL"));
+				atividade.setIdSubEvento(rs.getInt("ID_SUB_EVENTO"));
+				atividade.setSigla(rs.getString("SIGLA"));
+				atividade.setTipo(rs.getString("TIPO"));
+				atividade.setTitulo(rs.getString("TITULO"));
+				atividade.setDescricao(rs.getString("DESCRICAO"));
+				atividade.setData(rs.getLong("DATA"));
+				atividade.setHoraInicio(rs.getLong("HORA_INICIO"));
+				atividade.setHoraFim(rs.getLong("HORA_FIM"));
+				atividade.setDtCadastro(rs.getLong("DT_CADASTRO"));
+				atividade.setDtAlteracao(rs.getLong("DT_ALTERACAO"));
+				atividades.add(atividade);
 			}
 			
 		} catch (Exception e) {
 			System.out.println("Erro ao listar todos os clientes: " + e);
 			e.printStackTrace();
 		}
-		return clientes;
+		return atividades;
 	}
 	
 }

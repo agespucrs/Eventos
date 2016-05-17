@@ -18,9 +18,9 @@ import br.event.util.ConexaoUtil;
  * @since 17/02/2013 01:55:13
  * @version 1.0
  */
-public class ClienteDAO{
+public class AtualizacaoDAO{
 
-	private static ClienteDAO instance;
+	private static AtualizacaoDAO instance;
 	
 	
 	/**
@@ -32,9 +32,9 @@ public class ClienteDAO{
 	 * @since 17/02/2013 02:03:47
 	 * @version 1.0
 	 */
-	public static ClienteDAO getInstance(){
+	public static AtualizacaoDAO getInstance(){
 		if(instance == null)
-			instance = new ClienteDAO();
+			instance = new AtualizacaoDAO();
 		return instance;
 	}
 	
