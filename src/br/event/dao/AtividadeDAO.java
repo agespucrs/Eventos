@@ -13,6 +13,7 @@ import br.event.util.ConexaoUtil;
  * 
  * Classe responsável por conter os metodos do CRUD
  *
+<<<<<<< HEAD
  * @author 
  * @since 
  * @version 1.0
@@ -57,7 +58,7 @@ public class AtividadeDAO {
 			conexao = ConexaoUtil.getConexao();
 			atividades = new ArrayList<Atividade>();
 			StringBuilder sql = new StringBuilder();
-			sql.append("select * from event_e.TB_ATIVIDADE)");
+			sql.append("select * from event_e.TB_ATIVIDADE");
 			PreparedStatement pstmt = conexao.prepareStatement(sql.toString());
 			ResultSet rs = pstmt.executeQuery();
 			
@@ -81,6 +82,7 @@ public class AtividadeDAO {
 			
 		} catch (Exception e) {
 			System.out.println("Erro ao listar as atividades ->> " + e);
+
 			e.printStackTrace();
 		}
 		return atividades;
