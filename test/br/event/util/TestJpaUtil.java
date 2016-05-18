@@ -13,17 +13,14 @@ public class TestJpaUtil {
 	public static void main(String[] args) {
 		fabrica.getTransaction().begin();
 		Query query = fabrica.createNamedQuery("Atividade.ListAll");
-		//Atividade atividade = fabrica.find(Atividade.class, 1);
+		// Atividade atividade = fabrica.find(Atividade.class, 1);
 		System.out.println("_____________________________________________");
 		List<Atividade> atividades = query.getResultList();
 		for (Atividade atividade : atividades) {
-			System.out.println("Titulo: "	+ atividade.getTitulo());
+			System.out.println("Titulo: " + atividade.getTitulo());
 		}
-		
-		
-		//	System.out.println(atividade);
 		System.out.println("_____________________________________________");
 		fabrica.getTransaction().commit();
 		fabrica.close();
-}
+	}
 }
