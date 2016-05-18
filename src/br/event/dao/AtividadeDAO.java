@@ -66,8 +66,6 @@ public class AtividadeDAO {
 				Atividade atividade = new Atividade();
 				
 				atividade.setIdAtividade(rs.getInt("ID_ATIVIDADE"));
-				atividade.setIdLocal(rs.getInt("ID_LOCAL"));
-				atividade.setIdSubEvento(rs.getInt("ID_SUB_EVENTO"));
 				atividade.setSigla(rs.getString("SIGLA"));
 				atividade.setTipo(rs.getString("TIPO"));
 				atividade.setTitulo(rs.getString("TITULO"));

@@ -1,14 +1,28 @@
 package br.event.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+@Entity
 public class Evento {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="ID_EVENTO")
 	private int idEvento;
 	private String nome;
 	private String sigla;
 	private String descricao;
+	@Column(name="DT_INICIO")
 	private long dtInicio;
+	@Column(name="DT_FIM")
 	private long dtFim;
+	@Column(name="DT_CADASTRO")
 	private long dtCadastro;
+	@Column(name="DT_ALTERACAO")
 	private long dtAlteracao;
+	
 	public int getIdEvento() {
 		return idEvento;
 	}

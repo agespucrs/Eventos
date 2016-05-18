@@ -2,131 +2,159 @@ package br.event.model;
 
 import java.util.ArrayList;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
+@Entity
 public class Atividade {
-  private int idAtividade;
-  private int idLocal;
-  private int idSubEvento;
-  private String sigla;
-  private String tipo;
-  private String titulo;
-  private String descricao;
-  private long data;
-  private long horaInicio;
-  private long horaFim;
-  private long dtCadastro;
-  private long dtAlteracao;
-  private ArrayList<Palestrante> palestrantes;
-  
-  public Atividade() {
-		
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="ID_ATIVIDADE")
+	private int idAtividade;
+	@OneToOne
+	@JoinColumn(name="ID_LOCAL")
+	private Local local;
+	@OneToOne
+	@JoinColumn(name="ID_SUB_EVENTO")
+	private SubEvento subEvento;
+	private String sigla;
+	private String tipo;
+	private String titulo;
+	private String descricao;
+	private long data;
+	@Column(name="HORA_INICIO")
+	private long horaInicio;
+	@Column(name="HORA_FIM")
+	private long horaFim;
+	@Column(name="DT_CADASTRO")
+	private long dtCadastro;
+	@Column(name="DT_ALTERACAO")
+	private long dtAlteracao;
+	@OneToMany
+	private ArrayList<Palestrante> palestrantes;
+
+	public Atividade() {
+
 	}
 
-public int getIdAtividade() {
-	return idAtividade;
-}
+	public int getIdAtividade() {
+		return idAtividade;
+	}
 
-public void setIdAtividade(int idAtividade) {
-	this.idAtividade = idAtividade;
-}
+	public void setIdAtividade(int idAtividade) {
+		this.idAtividade = idAtividade;
+	}
 
-public int getIdLocal() {
-	return idLocal;
-}
 
-public void setIdLocal(int idLocal) {
-	this.idLocal = idLocal;
-}
+	public Local getLocal() {
+		return local;
+	}
 
-public int getIdSubEvento() {
-	return idSubEvento;
-}
+	public void setLocal(Local local) {
+		this.local = local;
+	}
 
-public void setIdSubEvento(int idSubEvento) {
-	this.idSubEvento = idSubEvento;
-}
+	public SubEvento getSubEvento() {
+		return subEvento;
+	}
 
-public String getSigla() {
-	return sigla;
-}
+	public void setSubEvento(SubEvento subEvento) {
+		this.subEvento = subEvento;
+	}
 
-public void setSigla(String sigla) {
-	this.sigla = sigla;
-}
+	public String getSigla() {
+		return sigla;
+	}
 
-public String getTipo() {
-	return tipo;
-}
+	public void setSigla(String sigla) {
+		this.sigla = sigla;
+	}
 
-public void setTipo(String tipo) {
-	this.tipo = tipo;
-}
+	public String getTipo() {
+		return tipo;
+	}
 
-public String getTitulo() {
-	return titulo;
-}
+	public void setTipo(String tipo) {
+		this.tipo = tipo;
+	}
 
-public void setTitulo(String titulo) {
-	this.titulo = titulo;
-}
+	public String getTitulo() {
+		return titulo;
+	}
 
-public String getDescricao() {
-	return descricao;
-}
+	public void setTitulo(String titulo) {
+		this.titulo = titulo;
+	}
 
-public void setDescricao(String descricao) {
-	this.descricao = descricao;
-}
+	public String getDescricao() {
+		return descricao;
+	}
 
-public long getData() {
-	return data;
-}
+	public void setDescricao(String descricao) {
+		this.descricao = descricao;
+	}
 
-public void setData(long data) {
-	this.data = data;
-}
+	public long getData() {
+		return data;
+	}
 
-public long getHoraInicio() {
-	return horaInicio;
-}
+	public void setData(long data) {
+		this.data = data;
+	}
 
-public void setHoraInicio(long horaInicio) {
-	this.horaInicio = horaInicio;
-}
+	public long getHoraInicio() {
+		return horaInicio;
+	}
 
-public long getHoraFim() {
-	return horaFim;
-}
+	public void setHoraInicio(long horaInicio) {
+		this.horaInicio = horaInicio;
+	}
 
-public void setHoraFim(long horaFim) {
-	this.horaFim = horaFim;
-}
+	public long getHoraFim() {
+		return horaFim;
+	}
 
-public long getDtCadastro() {
-	return dtCadastro;
-}
+	public void setHoraFim(long horaFim) {
+		this.horaFim = horaFim;
+	}
 
-public void setDtCadastro(long dtCadastro) {
-	this.dtCadastro = dtCadastro;
-}
+	public long getDtCadastro() {
+		return dtCadastro;
+	}
 
-public long getDtAlteracao() {
-	return dtAlteracao;
-}
+	public void setDtCadastro(long dtCadastro) {
+		this.dtCadastro = dtCadastro;
+	}
 
-public void setDtAlteracao(long dtAlteracao) {
-	this.dtAlteracao = dtAlteracao;
-}
+	public long getDtAlteracao() {
+		return dtAlteracao;
+	}
 
-public ArrayList<Palestrante> getPalestrantes() {
-	return palestrantes;
-}
+	public void setDtAlteracao(long dtAlteracao) {
+		this.dtAlteracao = dtAlteracao;
+	}
 
-public void setPalestrantes(ArrayList<Palestrante> palestrantes) {
-	this.palestrantes = palestrantes;
-}
+	public ArrayList<Palestrante> getPalestrantes() {
+		return palestrantes;
+	}
+
+	public void setPalestrantes(ArrayList<Palestrante> palestrantes) {
+		this.palestrantes = palestrantes;
+	}
+
+	@Override
+	public String toString() {
+		return "Atividade [idAtividade=" + idAtividade + ", local=" + local + ", subEvento=" + subEvento + ", sigla=" + sigla + ", tipo=" + tipo + ", titulo=" + titulo + ", descricao=" + descricao
+				+ ", data=" + data + ", horaInicio=" + horaInicio + ", horaFim=" + horaFim + ", dtCadastro=" + dtCadastro + ", dtAlteracao=" + dtAlteracao + ", palestrantes=" + palestrantes + "]";
+	}
 
 
 }

@@ -1,14 +1,30 @@
 package br.event.model;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+
+@Entity
 public class SubEvento {
-	private int idSubEvento;
-	private int idEvento;
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "ID_SUB_EVENTO")
+  private int idSubEvento;
+	@ManyToOne
+	@JoinColumn(name = "ID_EVENTO")
+	private Evento evento;
 	private String nome;
 	private String sigla;
 	private String descricao;
 	private long dtInicio;
 	private long dtFim;
+	@Column(name="DT_CADASTRO")
 	private long dtCadastro;
+	@Column(name="DT_ALTERACAO")
 	private long dtAlteracao;
 	public int getIdSubEvento() {
 		return idSubEvento;
@@ -16,11 +32,12 @@ public class SubEvento {
 	public void setIdSubEvento(int idSubEvento) {
 		this.idSubEvento = idSubEvento;
 	}
-	public int getIdEvento() {
-		return idEvento;
+	
+	public Evento getEvento() {
+		return evento;
 	}
-	public void setIdEvento(int idEvento) {
-		this.idEvento = idEvento;
+	public void setEvento(Evento evento) {
+		this.evento = evento;
 	}
 	public String getNome() {
 		return nome;

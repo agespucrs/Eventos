@@ -2,11 +2,23 @@ package br.event.model;
 
 import java.util.ArrayList;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+
+@Entity
 public class Palestrante {
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Column(name="ID_PALESTRANTE")
 	private int idPalestrante;
 	private String nome;
 	private String email;
+	@Column(name="DT_CADASTRO")
 	private long dtCadastro;
+	@Column(name="DT_ALTERACAO")
 	private long dtAlteracao;
 	
 	public int getIdPalestrante() {
