@@ -15,9 +15,9 @@ import br.event.model.Atividade;
  * 
  * Classe responsável por conter os metodos REST de acesso ao webservice
  *
- * @author Douglas Costa <douglas.cst90@gmail.com>
- * @since 17/02/2013 02:05:23
- * @version 1.0
+ * @author 
+ * @since 
+ * @version 
  */
 @Path("/atividade")
 public class AtividadeResource {
