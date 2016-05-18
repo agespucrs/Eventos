@@ -13,6 +13,7 @@ import br.event.util.ConexaoUtil;
  * 
  * Classe responsável por conter os metodos do CRUD
  *
+<<<<<<< HEAD
  * @author 
  * @since 
  * @version 1.0
@@ -81,6 +82,7 @@ public class AtividadeDAO {
 			
 		} catch (Exception e) {
 			System.out.println("Erro ao listar as atividades ->> " + e);
+
 			e.printStackTrace();
 		}
 		return atividades;
