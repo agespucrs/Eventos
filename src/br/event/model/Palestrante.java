@@ -1,14 +1,18 @@
 package br.event.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="TB_PALESTRANTE")
 public class Palestrante {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -20,6 +24,8 @@ public class Palestrante {
 	private long dtCadastro;
 	@Column(name="DT_ALTERACAO")
 	private long dtAlteracao;
+	@ManyToMany(mappedBy = "palestrantes")
+	private Collection<Atividade> atividades= new ArrayList<Atividade>();
 	
 	public int getIdPalestrante() {
 		return idPalestrante;
@@ -61,13 +67,12 @@ public class Palestrante {
 		this.dtAlteracao = dtAlteracao;
 	}
 
-	public ArrayList<Atividade> getAtividades() {
+	public Collection<Atividade> getAtividades() {
 		return atividades;
 	}
 
-	public void setAtividades(ArrayList<Atividade> atividades) {
+	public void setAtividades(Collection<Atividade> atividades) {
 		this.atividades = atividades;
 	}
-
-	private ArrayList<Atividade> atividades;
+	
 }

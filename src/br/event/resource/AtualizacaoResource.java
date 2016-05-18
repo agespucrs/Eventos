@@ -20,6 +20,7 @@ public class AtualizacaoResource {
 	@Path("/isAtualiza/{nData}")
 	@Produces("application/json")
 	public String isAtualiza(@PathParam("nData") long numeroData) {
+
 		String resultado = "erro";
 		if (numeroData < 0) {
 			resultado = "numer menor zero";

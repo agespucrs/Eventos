@@ -1,13 +1,15 @@
 package br.event.dao;
 
 import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.List;
+
+import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
 import br.event.model.Atividade;
-import br.event.util.ConexaoUtil;
+import br.event.util.JpaUtil;
 
 /**
  * 
@@ -21,7 +23,8 @@ import br.event.util.ConexaoUtil;
 public class AtividadeDAO {
 
 	private static AtividadeDAO atividadeDAO;
-	
+	private List<Atividade> atividades;
+	static EntityManager fabrica = JpaUtil.getFactory();
 	
 	/**
 	 * 
@@ -38,7 +41,6 @@ public class AtividadeDAO {
 		return atividadeDAO;
 	}
 
-	private ArrayList<Atividade> atividades;
 	
 	/**
 	 * 
@@ -51,32 +53,38 @@ public class AtividadeDAO {
 	 * @throws SQLException 
 	 * @throws ClassNotFoundException 
 	 */
-	public ArrayList<Atividade> listarTodos() throws ClassNotFoundException, SQLException{
+	public List<Atividade> listarTodos() throws ClassNotFoundException, SQLException{
+		
+		
 		Connection conexao = null;
 		
 		try {
-			conexao = ConexaoUtil.getConexao();
-			atividades = new ArrayList<Atividade>();
-			StringBuilder sql = new StringBuilder();
-			sql.append("select * from event_e.TB_ATIVIDADE");
-			PreparedStatement pstmt = conexao.prepareStatement(sql.toString());
-			ResultSet rs = pstmt.executeQuery();
-			
-			while(rs.next()){
-				Atividade atividade = new Atividade();
-				
-				atividade.setIdAtividade(rs.getInt("ID_ATIVIDADE"));
-				atividade.setSigla(rs.getString("SIGLA"));
-				atividade.setTipo(rs.getString("TIPO"));
-				atividade.setTitulo(rs.getString("TITULO"));
-				atividade.setDescricao(rs.getString("DESCRICAO"));
-				atividade.setData(rs.getLong("DATA"));
-				atividade.setHoraInicio(rs.getLong("HORA_INICIO"));
-				atividade.setHoraFim(rs.getLong("HORA_FIM"));
-				atividade.setDtCadastro(rs.getLong("DT_CADASTRO"));
-				atividade.setDtAlteracao(rs.getLong("DT_ALTERACAO"));
-				atividades.add(atividade);
-			}
+		
+			Query query = fabrica.createNamedQuery("Atividade.ListAll");
+			atividades = query.getResultList();
+					
+//			conexao = ConexaoUtil.getConexao();
+//			atividades = new ArrayList<Atividade>();
+//			StringBuilder sql = new StringBuilder();
+//			sql.append("select * from event_e.TB_ATIVIDADE");
+//			PreparedStatement pstmt = conexao.prepareStatement(sql.toString());
+//			ResultSet rs = pstmt.executeQuery();
+//			
+//			while(rs.next()){
+//				Atividade atividade = new Atividade();
+//				
+//				atividade.setIdAtividade(rs.getInt("ID_ATIVIDADE"));
+//				atividade.setSigla(rs.getString("SIGLA"));
+//				atividade.setTipo(rs.getString("TIPO"));
+//				atividade.setTitulo(rs.getString("TITULO"));
+//				atividade.setDescricao(rs.getString("DESCRICAO"));
+//				atividade.setData(rs.getLong("DATA"));
+//				atividade.setHoraInicio(rs.getLong("HORA_INICIO"));
+//				atividade.setHoraFim(rs.getLong("HORA_FIM"));
+//				atividade.setDtCadastro(rs.getLong("DT_CADASTRO"));
+//				atividade.setDtAlteracao(rs.getLong("DT_ALTERACAO"));
+//				atividades.add(atividade);
+//			}
 			
 		} catch (Exception e) {
 			System.out.println("Erro ao listar as atividades ->> " + e);

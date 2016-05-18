@@ -1,7 +1,7 @@
 package br.event.resource;
 
 import java.sql.SQLException;
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
@@ -26,17 +26,17 @@ public class AtividadeResource {
 	 * 
 	 * Método responsável por fazer chamada ao controller
 	 *
-	 * @return ArrayList<Cliente> 
-	 * @author Douglas Costa <douglas.cst90@gmail.com.br>
-	 * @since 17/02/2013 02:07:08
-	 * @version 1.0
-	 * @throws SQLException 
-	 * @throws ClassNotFoundException 
+	 * @return 
+	 * @author 
+	 * @since 
+	 * @version 
+	 * @throws
+	 * @throws 
 	 */
 	@GET
 	@Path("/listarTodos")
 	@Produces("application/json")
-	public ArrayList<Atividade> listarTodos() throws ClassNotFoundException, SQLException{
+	public List<Atividade> listarTodos() throws ClassNotFoundException, SQLException{
 		return new AtividadeController().listarTodos();
 	}
 }

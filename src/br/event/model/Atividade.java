@@ -1,6 +1,7 @@
 package br.event.model;
 
 import java.util.ArrayList;
+import java.util.Collection;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,12 +9,20 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 import javax.xml.bind.annotation.XmlRootElement;
 
 @XmlRootElement
 @Entity
+@Table(name="TB_ATIVIDADE")
+@NamedQueries({
+	@NamedQuery(name = "Atividade.ListAll", query = "SELECT a FROM Atividade a")
+})
 public class Atividade {
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -38,8 +47,12 @@ public class Atividade {
 	private long dtCadastro;
 	@Column(name="DT_ALTERACAO")
 	private long dtAlteracao;
-	@OneToMany
-	private ArrayList<Palestrante> palestrantes;
+	
+	@ManyToMany
+	@JoinTable(name = "TB_PALESTRANTE_ATIVIDADE", 
+		joinColumns = { @JoinColumn(name = "ID_ATIVIDADE") }, 
+		inverseJoinColumns = { @JoinColumn(name = "ID_PALESTRANTE") })
+	private Collection<Palestrante> palestrantes = new ArrayList<Palestrante>();
 
 	public Atividade() {
 
@@ -142,7 +155,7 @@ public class Atividade {
 		this.dtAlteracao = dtAlteracao;
 	}
 
-	public ArrayList<Palestrante> getPalestrantes() {
+	public Collection<Palestrante> getPalestrantes() {
 		return palestrantes;
 	}
 

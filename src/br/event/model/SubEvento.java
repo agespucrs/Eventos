@@ -7,8 +7,10 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 
 @Entity
+@Table(name="TB_SUB_EVENTO")
 public class SubEvento {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
