@@ -30,7 +30,7 @@
 			<properties>
 				<build.number>SNAPSHOT</build.number>
 				<sgbd.url>jdbc:mysql://10.32.223.4:3306/event_e</sgbd.url>
-				<sgbd.user>ages</sgbd.user>
+				<sgbd.user>event</sgbd.user>
 				<sgbd.password>event123_e#BD</sgbd.password>
 				<log.path>/home/ages/</log.path>
 			</properties>
