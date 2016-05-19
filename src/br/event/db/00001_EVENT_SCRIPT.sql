@@ -1,3 +1,15 @@
+--liquibase formatted sql
+--changeset cassio:1
+--comment Script para criação das tabelas do projeto.
+/***
+* Scripts para criacao e insersao de dados
+* Base Dados event_e
+* Casssio Trindade
+* 17/05/2016
+***/
+
+USE event_e;
+
 -- -----------------------------------------------------
 -- Table `event_e`.`tb_evento`
 -- -----------------------------------------------------
