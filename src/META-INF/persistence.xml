@@ -5,6 +5,7 @@
 	<class>br.event.model.Atividade</class>
 	<class>br.event.model.Evento</class>
 	<class>br.event.model.Local</class>
+	<class>br.event.model.Noticia</class>
 	<class>br.event.model.Palestrante</class>
 	<class>br.event.model.SubEvento</class>
 	<class>br.event.model.Usuario</class>

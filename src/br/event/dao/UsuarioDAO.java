@@ -1,8 +1,11 @@
 package br.event.dao;
  
+import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
+import br.event.model.Noticia;
 import br.event.model.Usuario;
  
 public class UsuarioDAO extends GenericDAO<Usuario> {

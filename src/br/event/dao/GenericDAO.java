@@ -87,8 +87,6 @@ abstract class GenericDAO<T> implements Serializable {
 		return em.createQuery(cq).getResultList();
 	}
 
-	// Using the unchecked because JPA does not have a
-	// query.getSingleResult()<T> method
 	@SuppressWarnings("unchecked")
 	protected T findOneResult(String namedQuery, Map<String, Object> parameters) {
 		T result = null;
@@ -110,6 +108,30 @@ abstract class GenericDAO<T> implements Serializable {
 			e.printStackTrace();
 		}
 
+		return result;
+	}
+	
+	@SuppressWarnings("unchecked")
+	protected T findAnyResult(String namedQuery, Map<String, Object> parameters) {
+		T result = null;
+		
+		try {
+			Query query = em.createNamedQuery(namedQuery);
+			
+			// Method that will populate parameters if they are passed not null and empty
+			if (parameters != null && !parameters.isEmpty()) {
+				populateQueryParameters(query, parameters);
+			}
+			
+			result = (T) query.getResultList();
+			
+		} catch (NoResultException e) {
+			System.out.println("Nenhum resultado para a busca: " + namedQuery);
+		} catch (Exception e) {
+			System.out.println("Error quando da execução da Busca: " + e.getMessage());
+			e.printStackTrace();
+		}
+		
 		return result;
 	}
 

@@ -15,7 +15,7 @@ import br.event.model.Atividade;
  * @since 17/05/2016
  * @version 1.0
  */
-public class AtividadeController {
+public class AtividadeBO {
 	
 	public List<Atividade> listarTodos() throws ClassNotFoundException, SQLException{
 		System.out.println("Gerando Atividade");

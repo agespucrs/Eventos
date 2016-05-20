@@ -1,5 +1,12 @@
 package br.event.model;
 
+/**
+ * Clase para DTO para validar o usuario 
+ * @author cassio
+ * @since 18/05/2016
+ * @version 1.0
+ *
+ */
 public class Login {
 	private int idlogin;
 	private String usuario;

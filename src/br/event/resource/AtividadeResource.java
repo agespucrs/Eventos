@@ -7,7 +7,7 @@ import javax.ws.rs.GET;
 import javax.ws.rs.Path;
 import javax.ws.rs.Produces;
 
-import br.event.bo.AtividadeController;
+import br.event.bo.AtividadeBO;
 import br.event.model.Atividade;
 
 
@@ -37,6 +37,6 @@ public class AtividadeResource {
 	@Path("/listarTodos")
 	@Produces("application/json")
 	public List<Atividade> listarTodos() throws ClassNotFoundException, SQLException{
-		return new AtividadeController().listarTodos();
+		return new AtividadeBO().listarTodos();
 	}
 }
