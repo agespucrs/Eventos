@@ -1,7 +1,2 @@
-<<<<<<< HEAD
 <?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14635091798360" configfile="/Event/WebContent/WEB-INF/faces-config.xml"/>
-=======
-<?xml version="1.0" encoding="UTF-8"?>
-<pageflow:Pageflow xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14635112356220" configfile="/Eventos/WebContent/WEB-INF/faces-config.xml"/>
->>>>>>> 1d200f1126e5afea37455a24289f273ed5d2e7ff
+<pageflow:Pageflow xmlns:pageflow="http://www.sybase.com/suade/pageflow" id="pf14636940761950" configfile="/Event/WebContent/WEB-INF/faces-config.xml"/>

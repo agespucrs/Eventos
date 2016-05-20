@@ -6,7 +6,7 @@
     version="2.2">
 	<application>
 		<resource-bundle>
-			<base-name>br.event.resources.messages</base-name>
+			<base-name>resources.messages</base-name>
 			<var>msgs</var>
 		</resource-bundle>
 	</application>
