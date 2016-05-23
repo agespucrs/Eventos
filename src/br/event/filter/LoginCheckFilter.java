@@ -37,7 +37,7 @@ public class LoginCheckFilter extends AbstractFilter implements Filter {
 			allowedURIs.add("/Event/javax.faces.resource/messages/messages.png.xhtml");
 			allowedURIs.add("/Event/javax.faces.resource/images/ui-icons_2e83ff_256x240.png.xhtml");
 			allowedURIs.add("/Event/javax.faces.resource/images/ui-icons_38667f_256x240.png.xhtml");
-			allowedURIs.add("/Event/public/ws/*");
+			allowedURIs.add("/Event/ws/*");
 		}
 	}
 

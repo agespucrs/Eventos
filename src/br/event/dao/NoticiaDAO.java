@@ -28,11 +28,10 @@ public class NoticiaDAO extends GenericDAO<Noticia> {
 
 	
 	/**
-	 * 
 	 * Método responsável por listar todas as Noticias ativas 
 	 *
-	 * @author  
-	 * @since 
+	 * @author Cassio 
+	 * @since 20/05/2016
 	 * @version 1.0
 	 */
 	@SuppressWarnings("unchecked")
@@ -44,18 +43,5 @@ public class NoticiaDAO extends GenericDAO<Noticia> {
      return (List<Noticia>) super.findAnyResult(Noticia.LISTA_NOTICIAS_ATIVAS, parameters);
 		
 	}
-/*	
-	public static void main(String[] args) throws ClassNotFoundException, SQLException {
-		
-		ArrayList<Noticia> noticias = new ArrayList<>();
-		NoticiaDAO dao = new NoticiaDAO();
-		dao.beginTransaction();
-		noticias = (ArrayList<Noticia>) dao.listarTodas("ATIVO");
-		for (Noticia noticia : noticias) {
-			System.out.println(noticia.getTexto() + " -- " + noticia.getStatus());
-		}
-	
 
-	}
-		*/
 }
