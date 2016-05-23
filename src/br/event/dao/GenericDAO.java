@@ -78,8 +78,6 @@ abstract class GenericDAO<T> implements Serializable {
 		return em.getReference(entityClass, entityID);
 	}
 
-	// Using the unchecked because JPA does not have a
-	// em.getCriteriaBuilder().createQuery()<T> method
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public List<T> findAll() {
 		CriteriaQuery cq = em.getCriteriaBuilder().createQuery();

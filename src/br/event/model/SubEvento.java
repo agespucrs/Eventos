@@ -1,5 +1,7 @@
 package br.event.model;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -7,11 +9,22 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.NamedQueries;
+import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.xml.bind.annotation.XmlRootElement;
 
+@XmlRootElement
 @Entity
 @Table(name="TB_SUB_EVENTO")
-public class SubEvento {
+@NamedQueries({
+	@NamedQuery(name = "SubEvento.ListAll", query = "SELECT s FROM SubEvento s where s.dtAlteracao >= :dataAtualizacao")
+}) 
+public class SubEvento implements Serializable{
+
+	private static final long serialVersionUID = -1160756620220411798L;
+	public static final String LISTA_SUBEVENTOS = "SubEvento.ListAll";
+	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ID_SUB_EVENTO")

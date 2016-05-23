@@ -28,7 +28,7 @@
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>Jersey REST Service</servlet-name>
-		<url-pattern>/public/ws/*</url-pattern>
+		<url-pattern>/ws/*</url-pattern>
 	</servlet-mapping>
 	
 	<!-- Filtro de verificação de acesso -->
