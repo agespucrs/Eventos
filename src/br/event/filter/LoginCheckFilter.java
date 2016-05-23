@@ -15,18 +15,18 @@ import javax.servlet.http.HttpSession;
 
 import br.event.model.Usuario;
 
-
 /**
  * Servlet Filter implementation class UserCheckFilter
  */
 public class LoginCheckFilter extends AbstractFilter implements Filter {
 	private static List<String> allowedURIs;
+	private static String wsURIs;
 
 	/**
 	 * @see Filter#init(FilterConfig)
 	 */
 	public void init(FilterConfig fConfig) throws ServletException {
-		if(allowedURIs == null){
+		if (allowedURIs == null) {
 			allowedURIs = new ArrayList<String>();
 			allowedURIs.add(fConfig.getInitParameter("loginActionURI"));
 			allowedURIs.add("/Event/javax.faces.resource/main.css.xhtml");
@@ -37,8 +37,10 @@ public class LoginCheckFilter extends AbstractFilter implements Filter {
 			allowedURIs.add("/Event/javax.faces.resource/messages/messages.png.xhtml");
 			allowedURIs.add("/Event/javax.faces.resource/images/ui-icons_2e83ff_256x240.png.xhtml");
 			allowedURIs.add("/Event/javax.faces.resource/images/ui-icons_38667f_256x240.png.xhtml");
-			allowedURIs.add("/Event/ws/*");
+			allowedURIs.add("/Event/ws/noticias/listarTodas/ATIVO");
 		}
+
+		wsURIs = "/Event/ws";
 	}
 
 	/**
@@ -53,20 +55,22 @@ public class LoginCheckFilter extends AbstractFilter implements Filter {
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest req = (HttpServletRequest) request;
 		HttpSession session = req.getSession();
+	
+		if (wsURIs.contains(req.getRequestURI())) {
 
-		if (session.isNew()) {
-			doLogin(request, response, req);
-			return;
+			if (session.isNew()) {
+				doLogin(request, response, req);
+				return;
+			}
+
+			Usuario user = (Usuario) session.getAttribute("user");
+
+			if (user == null && !allowedURIs.contains(req.getRequestURI())) {
+				System.out.println(req.getRequestURI());
+				doLogin(request, response, req);
+				return;
+			}
 		}
-
-		Usuario user = (Usuario) session.getAttribute("user");
-
-		if (user == null && !allowedURIs.contains(req.getRequestURI())) {
-			System.out.println(req.getRequestURI());
-			doLogin(request, response, req);
-			return;
-		}
-
 		chain.doFilter(request, response);
 	}
 }

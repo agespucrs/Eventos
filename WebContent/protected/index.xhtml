@@ -6,14 +6,12 @@
 <h:head>
 </h:head>
 <h:body>
+<ui:composition template="/protected/templates/master.xhtml">
 	<h:form prependId="false">
 		<p:panel id="panel" header="#{msgs.topo}">
-			<p:messages id="msg" />
-			<p:button href="/ws/atividade/listarTodos" value="Atividade"/>
-			<p:button href="/ws/subevento/listar/1462900000" value="SubEventos"/>
-			<p:button href="/ws/noticias/listarTodas/ATIVO" value="Noticias"/>
-			<p:button href="/protected/cadastroNoticias.xhtml" value="Cadastro de Noticias"/>
+		
 		</p:panel>
 	</h:form>
+	</ui:composition>
 </h:body>
 </html>

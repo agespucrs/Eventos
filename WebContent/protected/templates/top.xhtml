@@ -1,19 +1,29 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
-   <h:body>   
-     <ui:composition>
-     	<div id="topMessage">
-     		<h1>
-     			<h:form>
-		     		#{bundle.loginWelcomeMessage}: #{userMB.user.name} | <p:commandButton value="#{bundle.logOut}" action="#{userMB.logOut()}" ajax="false" style="font-size: 20px;" />
-     			</h:form>
-     		</h1>
-     	</div>
-     </ui:composition>   
-   </h:body>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:ui="http://java.sun.com/jsf/facelets" xmlns:h="http://java.sun.com/jsf/html" xmlns:p="http://primefaces.org/ui">
+<h:body>
+	<ui:composition>
+	
+	<h:form>  
+    <p:growl id="msg"/>
+    
+    <p:menubar>
+        <p:submenu label="Cadastros" icon="ui-icon-document">
+            <p:menuitem value="Notícias" url="/protected/cadastroNoticias.xhtml" icon="fa fa-newspaper-o"/>
+            <p:menuitem value="Atividades" url="#" />
+            <p:menuitem value="Palestrantes" url="#" />
+            <p:menuitem value="SubEventos" url="#" />
+            <p:separator />
+            <p:menuitem value="Sair" action="#{usuarioMB.logOut()}"  ajax="false"/>
+        </p:submenu>
+        <p:submenu label="WebServices" icon="ui-icon-arrow">
+            <p:menuitem value="Atividade" url="/ws/atividade/listarTodos" icon="fa fa-paper-plane-o" />
+            <p:menuitem value="Noticias" url="/ws/noticias/listarTodas/ATIVO" icon="fa fa-paper-plane-o" />
+            <p:menuitem value="SubEventos" url="/ws/subevento/listar/1462900000" icon="fa fa-paper-plane-o" />
+        </p:submenu>
+        </p:menubar>
+        </h:form>
+	</ui:composition>
+</h:body>
 </html>

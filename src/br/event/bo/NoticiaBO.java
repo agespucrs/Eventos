@@ -17,4 +17,11 @@ public class NoticiaBO {
 		
 		return noticias; 
 	}
+	
+	public void createNoticia(Noticia noticia){
+		dao.beginTransaction();
+		dao.save(noticia);
+		dao.commitAndCloseTransaction();
+	}
+	
 }

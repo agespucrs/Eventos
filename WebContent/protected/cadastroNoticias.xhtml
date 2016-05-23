@@ -5,15 +5,39 @@
 	xmlns:f="http://xmlns.jcp.org/jsf/core" xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/protected/templates/master.xhtml">
-	<ui:define name="divMain">
-		<p:panelGrid columns="2">
-			<h:graphicImage library="images" name="" />
-			<h:form prependId="false">
-				<p:panel id="panel" header="#{msgs.topoNoticias}">
 
-				</p:panel>
+	<ui:define name="image">
+		<h:graphicImage library="images" name="newspaper.png" />
+	</ui:define>
+	<ui:define name="content">
+		<p:fieldset id="fset" legend="#{msgs.topoNoticias}">
+		<p:growl id="messageGrowl" />
+			<h:form id="formNoticia" prependId="false">
+				<p:panelGrid id="pGrid" columns="2" layout="tabular">
+					<p:outputLabel id="tituloNoticia" value="#{msgs.tituloNoticia}" />
+					<p:inputText value="#{noticiaMB.noticia.titulo}" id="titulo" name="titulo" maxlength="60" size="60" required="true" />
+					<p:outputLabel id="descricaoNoticia" value="#{msgs.descricaoNoticia}" />
+					<p:row>
+						<p:inputTextarea value="#{noticiaMB.noticia.texto}" id="descricao" label="descricao" rows="3" cols="60" counter="display" maxlength="300" counterTemplate="restam {0} caracteres"
+							autoResize="false" />
+						<br />
+						<h:outputText id="display" />
+					</p:row>
+					<p:outputLabel id="statusNoticia" value="#{msgs.statusNoticia}" />
+					<p:selectOneRadio value="#{noticiaMB.noticia.status}" id="status" label="status" required="true">
+						<f:selectItem itemLabel="ATIVO" itemValue="ATIVO" />
+						<f:selectItem itemLabel="INATIVO" itemValue="INATIVO" />
+					</p:selectOneRadio>
+					<f:facet name="footer">
+						<p:commandButton id="btnCadastrar" value="#{msgs.botaoSubmit}" icon="fa fa-plus" 
+								action="#{noticiaMB.createNoticia}" 
+								update=":messageGrowl"/>
+						<p:commandButton id="btnCancelar" value="#{msgs.botaoReset}" icon="fa fa-eraser" 
+								onclick="reset" />
+					</f:facet>
+				</p:panelGrid>
 			</h:form>
-		</p:panelGrid>
+		</p:fieldset>
 	</ui:define>
 </ui:composition>
 </html>

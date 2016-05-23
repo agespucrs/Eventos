@@ -10,6 +10,13 @@
 	<properties>
 		<project.build.sourceEncoding>ISO-8859-1</project.build.sourceEncoding>
 	</properties>
+	<repositories>
+		<repository>
+			<id>prime-repo</id>
+			<name>Prime Repo</name>
+			<url>http://repository.primefaces.org</url>
+		</repository>
+	</repositories>
 	<profiles>
 		<!-- Profile de desenvolvimento (padrao) -->
 		<profile>
@@ -140,13 +147,17 @@
 			<version>1.1.2</version>
 		</dependency>
 		<dependency>
-	  		<groupId>org.primefaces</groupId>
-	  		<artifactId>primefaces</artifactId>
-	  		<version>5.3</version>
-  		</dependency> 
-  		
-  		<!-- JPA -->
-  		<dependency>
+			<groupId>org.primefaces</groupId>
+			<artifactId>primefaces</artifactId>
+			<version>5.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.primefaces.themes</groupId>
+			<artifactId>bootstrap</artifactId>
+			<version>1.0.10</version>
+		</dependency>
+		<!-- JPA -->
+		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-entitymanager</artifactId>
 			<version>4.3.8.Final</version>
@@ -156,8 +167,8 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.35</version>
 		</dependency>
-		
-  		<!-- ASM -->
+
+		<!-- ASM -->
 		<dependency>
 			<groupId>asm</groupId>
 			<artifactId>asm</artifactId>
@@ -170,7 +181,7 @@
 			<artifactId>gson</artifactId>
 			<version>2.1</version>
 		</dependency>
-		
+
 		<!-- JERSEY -->
 		<dependency>
 			<groupId>com.sun.jersey</groupId>
@@ -192,7 +203,7 @@
 			<artifactId>jersey-server</artifactId>
 			<version>1.11</version>
 		</dependency>
-		
+
 		<!-- JSR -->
 		<dependency>
 			<groupId>javax.ws.rs</groupId>
