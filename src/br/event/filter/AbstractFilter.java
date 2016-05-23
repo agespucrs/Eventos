@@ -23,4 +23,5 @@ public class AbstractFilter {
 		RequestDispatcher rd = req.getRequestDispatcher("/public/accessDenied.xhtml");
 		rd.forward(request, response);
 	}
+	
 }
