@@ -1,12 +1,15 @@
 package br.even.mb;
 
 import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
 
 import br.event.bo.NoticiaBO;
 import br.event.model.Noticia;
+import br.event.util.Constantes;
 
 
 @SessionScoped
@@ -32,19 +35,28 @@ public class NoticiaMB extends AbstractMB implements Serializable{
 		this.noticia = noticia;
 	}
 	
-  public void createNoticia(){
+  public void  createNoticia(){
   	try {
   		bo.createNoticia(noticia);
-  		displayInfoMessageToUser("Criado Noticia com SUCESSO");
+  		displayInfoMessageToUser(Constantes.MSG_SUC_NOTICIA);
   		resetNoticia();
+  		
 		} catch (Exception e) {
-			displayErrorMessageToUser("ERRO na criação de noticias");
+			displayErrorMessageToUser(Constantes.MSG_ERR_NOTICIA);
 			e.printStackTrace();
 		}
-  	
+		
   }
+  
+  public List<Noticia> listaNoticias() {
+  	List<Noticia> noticias = new ArrayList<>(); 
+  	noticias = bo.listAll();
+  	return noticias;
+	}
 	
   public void resetNoticia() {
   	noticia = new Noticia();
 	}
+  
+  
 }

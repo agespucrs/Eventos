@@ -1,5 +1,7 @@
 package br.event.util;
 
+import java.util.ResourceBundle;
+
 /**
  * Constantes do sistema
  * @author cassio trindade
@@ -14,7 +16,11 @@ public class Constantes {
 	public static final String CONEXAO_BD_PASSWORD = "conexao.password";
 	
 	public static final String VERSAO_SISTEMA = "version";
+
 	
-	public static final int PROJETO_ARQUIVO_MAX_BYTES = 1024*1024*10;
+	public static final String MSG_SUC_NOTICIA = ResourceBundle.getBundle("resources.messages").getString("msgSucNoticia");
+	public static final String MSG_ERR_NOTICIA = ResourceBundle.getBundle("resources.messages").getString("msgErrNoticia");
+	
+	
 		
 }

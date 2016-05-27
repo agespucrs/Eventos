@@ -44,4 +44,12 @@ public class NoticiaDAO extends GenericDAO<Noticia> {
 		
 	}
 
+  
+	public List<Noticia> listAll() {
+		noticiaDAO.beginTransaction();
+		List<Noticia> result = noticiaDAO.findAll();
+		noticiaDAO.closeTransaction();
+		return result;
+	}
+
 }

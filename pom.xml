@@ -17,42 +17,6 @@
 			<url>http://repository.primefaces.org</url>
 		</repository>
 	</repositories>
-	<profiles>
-		<!-- Profile de desenvolvimento (padrao) -->
-		<profile>
-			<id>desenvolvimento</id>
-			<activation>
-				<activeByDefault>true</activeByDefault>
-			</activation>
-			<properties>
-				<sgbd.url>jdbc:mysql://localhost:3306/event_e</sgbd.url>
-				<sgbd.user>root</sgbd.user>
-				<sgbd.password>senha</sgbd.password>
-				<log.path>c:\\cawt\\</log.path>
-			</properties>
-		</profile>
-		<!-- Profile de homologacao -->
-		<profile>
-			<id>homologacao</id>
-			<properties>
-				<build.number>SNAPSHOT</build.number>
-				<sgbd.url>jdbc:mysql://10.32.223.4:3306/event_e</sgbd.url>
-				<sgbd.user>event</sgbd.user>
-				<sgbd.password>event123_e#BD</sgbd.password>
-				<log.path>/home/ages/</log.path>
-			</properties>
-		</profile>
-		<!-- Profile de producao -->
-		<profile>
-			<id>producao</id>
-			<properties>
-				<sgbd.url>jdbc:mysql://localhost:3306/event_e</sgbd.url>
-				<sgbd.user>ages_e</sgbd.user>
-				<sgbd.password>oissac1906#event_e</sgbd.password>
-				<log.path>/home/ages/</log.path>
-			</properties>
-		</profile>
-	</profiles>
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<resources>
