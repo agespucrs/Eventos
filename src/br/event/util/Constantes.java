@@ -21,6 +21,12 @@ public class Constantes {
 	public static final String MSG_SUC_NOTICIA = ResourceBundle.getBundle("resources.messages").getString("msgSucNoticia");
 	public static final String MSG_ERR_NOTICIA = ResourceBundle.getBundle("resources.messages").getString("msgErrNoticia");
 	
+	public static final String MSG_SUC_DEL_NOTICIA = ResourceBundle.getBundle("resources.messages").getString("msgSucDelNoticia");
+	public static final String MSG_ERR_DEL_NOTICIA = ResourceBundle.getBundle("resources.messages").getString("msgErrDelNoticia");
+	
+	public static final String MSG_SUC_ALT_NOTICIA = ResourceBundle.getBundle("resources.messages").getString("msgSucAltNoticia");
+	public static final String MSG_ERR_ALT_NOTICIA = ResourceBundle.getBundle("resources.messages").getString("msgErrAltNoticia");
+	
 	
 		
 }

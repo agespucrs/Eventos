@@ -29,8 +29,9 @@
 						<f:selectItem itemLabel="INATIVO" itemValue="INATIVO" />
 					</p:selectOneRadio>
 					<f:facet name="footer">
-						<p:commandButton id="btnCadastrar" value="#{msgs.botaoSubmit}" icon="fa fa-plus" action="#{noticiaMB.createNoticia}" update=":messageGrowl :formNoticia" />
-						<p:commandButton id="btnCancelar" value="#{msgs.botaoReset}" icon="fa fa-eraser" type="reset" />
+						<p:commandButton id="btnCadastrar" rendered="#{noticiaMB.btnCadastrar}" value="#{msgs.botaoSubmit}" icon="fa fa-plus"   action="#{noticiaMB.createNoticia}" update=":messageGrowl :formNoticia :formListNoticia" />
+						<p:commandButton id="btnSalvar"    rendered="#{noticiaMB.btnSalvar}"    value="#{msgs.botaoSave}"   icon="fa fa-pencil" action="#{noticiaMB.editNoticia}" update=":messageGrowl :formNoticia :formListNoticia" />
+						<p:commandButton id="btnCancelar"   value="#{msgs.botaoReset}" icon="fa fa-eraser" type="reset" />
 					</f:facet>
 				</p:panelGrid>
 			</h:form>
@@ -47,10 +48,10 @@
 						<h:panelGrid columns="1" style="width:100%; text-align:left">
 							<h:outputText value="#{noticia.texto}" />
 							<p:row>
-								<p:commandLink update=""  title="Remover">
+								<p:commandLink update="" action="#{noticiaMB.setNoticia(noticia)}"  onclick="PF('excluirNoticia').show()" title="Remover">
 									<h:outputText styleClass="fa fa-remove"/>
 								</p:commandLink>
-								<p:commandLink update=""  title="Editar" >
+								<p:commandLink update=":messageGrowl :formNoticia" actionListener="#{noticiaMB.botoes}" action="#{noticiaMB.setNoticia(noticia)}" title="Editar" >
 									<h:outputText styleClass="fa fa-pencil"/>
 								</p:commandLink>
 							</p:row>
@@ -60,6 +61,14 @@
 				</p:dataGrid>
 			</h:form>
 		</p:fieldset>
+		<h:form id="dlg">
+			<p:confirmDialog message="Deseja realmente excluir este registo?" hideEffect="explode" header="Aviso" severity="alert" widgetVar="excluirNoticia">
+				<p:commandButton id="btnSim" value="Sim" oncomplete="PF('excluirNoticia').hide()" action="#{noticiaMB.deleteNoticia}" process="@form"
+					update=":messageGrowl :formNoticia :formListNoticia " />
+				<p:commandButton id="btnNao" value="Não" onclick="PF('excluirNoticia').hide()" type="button" />
+			</p:confirmDialog>
+		</h:form>
+
 	</ui:define>
 </ui:composition>
 </html>
