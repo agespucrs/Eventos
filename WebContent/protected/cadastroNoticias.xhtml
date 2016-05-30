@@ -11,15 +11,15 @@
 	</ui:define>
 	<ui:define name="content">
 		<p:fieldset id="fset" legend="#{msgs.topoNoticias}">
-		<p:growl id="messageGrowl" />
+			<p:growl id="messageGrowl" />
 			<h:form id="formNoticia" prependId="false">
 				<p:panelGrid id="pGrid" columns="2" layout="tabular">
 					<p:outputLabel id="tituloNoticia" value="#{msgs.tituloNoticia}" />
 					<p:inputText value="#{noticiaMB.noticia.titulo}" id="titulo" name="titulo" maxlength="60" size="60" required="true" />
 					<p:outputLabel id="descricaoNoticia" value="#{msgs.descricaoNoticia}" />
 					<p:row>
-						<p:inputTextarea value="#{noticiaMB.noticia.texto}" id="descricao" label="descricao" rows="3" cols="60" counter="display" maxlength="300" counterTemplate="restam {0} caracteres"
-							autoResize="false" />
+						<p:inputTextarea value="#{noticiaMB.noticia.texto}" id="descricao" label="descricao" rows="3" cols="60" counter="display" maxlength="300"
+							counterTemplate="restam {0} caracteres" autoResize="false" />
 						<br />
 						<h:outputText id="display" />
 					</p:row>
@@ -29,15 +29,46 @@
 						<f:selectItem itemLabel="INATIVO" itemValue="INATIVO" />
 					</p:selectOneRadio>
 					<f:facet name="footer">
-						<p:commandButton id="btnCadastrar" value="#{msgs.botaoSubmit}" icon="fa fa-plus" 
-								action="#{noticiaMB.createNoticia}" 
-								update=":messageGrowl"/>
-						<p:commandButton id="btnCancelar" value="#{msgs.botaoReset}" icon="fa fa-eraser" 
-								onclick="reset" />
+						<p:commandButton id="btnCadastrar" rendered="#{noticiaMB.btnCadastrar}" value="#{msgs.botaoSubmit}" icon="fa fa-plus"   action="#{noticiaMB.createNoticia}" update=":messageGrowl :formNoticia :formListNoticia" />
+						<p:commandButton id="btnSalvar"    rendered="#{noticiaMB.btnSalvar}"    value="#{msgs.botaoSave}"   icon="fa fa-pencil" action="#{noticiaMB.editNoticia}" update=":messageGrowl :formNoticia :formListNoticia" />
+						<p:commandButton id="btnCancelar"   value="#{msgs.botaoReset}" icon="fa fa-eraser" type="reset" />
 					</f:facet>
 				</p:panelGrid>
 			</h:form>
+
+			<h:form id="formListNoticia">
+				<p:dataGrid var="noticia" value="#{noticiaMB.listaNoticias()}" columns="3" layout="grid" rows="3" paginator="true" id="listaNoticias"
+					paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+					rowsPerPageTemplate="6,12,16">
+
+					<f:facet name="header">
+            			Lista de Noticias
+        			</f:facet>
+					<p:panel header="#{noticia.idNoticia} #{noticia.titulo}" style="text-align:center">
+						<h:panelGrid columns="1" style="width:100%; text-align:left">
+							<h:outputText value="#{noticia.texto}" />
+							<p:row>
+								<p:commandLink update="" action="#{noticiaMB.setNoticia(noticia)}"  onclick="PF('excluirNoticia').show()" title="Remover">
+									<h:outputText styleClass="fa fa-remove"/>
+								</p:commandLink>
+								<p:commandLink update=":messageGrowl :formNoticia" actionListener="#{noticiaMB.botoes}" action="#{noticiaMB.setNoticia(noticia)}" title="Editar" >
+									<h:outputText styleClass="fa fa-pencil"/>
+								</p:commandLink>
+							</p:row>
+						</h:panelGrid>
+					</p:panel>
+
+				</p:dataGrid>
+			</h:form>
 		</p:fieldset>
+		<h:form id="dlg">
+			<p:confirmDialog message="Deseja realmente excluir este registo?" hideEffect="explode" header="Aviso" severity="alert" widgetVar="excluirNoticia">
+				<p:commandButton id="btnSim" value="Sim" oncomplete="PF('excluirNoticia').hide()" action="#{noticiaMB.deleteNoticia}" process="@form"
+					update=":messageGrowl :formNoticia :formListNoticia " />
+				<p:commandButton id="btnNao" value="Não" onclick="PF('excluirNoticia').hide()" type="button" />
+			</p:confirmDialog>
+		</h:form>
+
 	</ui:define>
 </ui:composition>
 </html>

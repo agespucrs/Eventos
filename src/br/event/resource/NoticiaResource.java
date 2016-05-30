@@ -1,6 +1,7 @@
 package br.event.resource;
 
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.ws.rs.GET;
@@ -27,6 +28,9 @@ public class NoticiaResource {
 	@Produces("application/json")
 	public List<Noticia> listarTodas(@PathParam("pStatus") String status) throws ClassNotFoundException, SQLException{
 		
-		return new NoticiaBO().listarTodas(status);
+		NoticiaBO bo = new NoticiaBO();
+		ArrayList<Noticia> noticias = (ArrayList<Noticia>) bo.listarTodas(status);
+		
+		return noticias;
 	}
 }

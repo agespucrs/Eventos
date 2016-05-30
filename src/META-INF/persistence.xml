@@ -12,8 +12,11 @@
 	<class>br.event.model.Usuario</class>
 		<properties>
 			<property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"></property>
-			<property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/event_e"></property>
-			<property name="hibernate.connection.username" value="root"></property>
+			 <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/event_e"></property> 
+			<!-- <property name="hibernate.connection.url" value="jdbc:mysql://10.32.223.7:60126/event_e"></property>
+			<property name="hibernate.connection.username" value="event"></property>
+			<property name="hibernate.connection.password" value="#107$$event_e7BD"></property> -->
+ 			<property name="hibernate.connection.username" value="root"></property>
 			<property name="hibernate.connection.password" value="senha"></property>
 			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"></property>
 			<property name="hibernate.show_sql" value="true"></property>
