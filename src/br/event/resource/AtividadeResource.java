@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.ws.rs.GET;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 
 import br.event.bo.AtividadeBO;
@@ -34,9 +35,9 @@ public class AtividadeResource {
 	 * @throws 
 	 */
 	@GET
-	@Path("/listarTodos")
+	@Path("/listar/{pData}")
 	@Produces("application/json")
-	public List<Atividade> listarTodos() throws ClassNotFoundException, SQLException{
-		return new AtividadeBO().listarTodos();
+	public List<Atividade> listarTodos(@PathParam("pData") Long dataAtualizacao) throws ClassNotFoundException, SQLException{
+		return new AtividadeBO().listarTodos(dataAtualizacao);
 	}
 }

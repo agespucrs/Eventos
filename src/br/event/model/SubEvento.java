@@ -35,7 +35,9 @@ public class SubEvento implements Serializable{
 	private String nome;
 	private String sigla;
 	private String descricao;
+	@Column(name="DT_INICIO")
 	private long dtInicio;
+	@Column(name="DT_FIM")
 	private long dtFim;
 	@Column(name="DT_CADASTRO")
 	private long dtCadastro;

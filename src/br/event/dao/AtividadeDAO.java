@@ -3,12 +3,15 @@ package br.event.dao;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
 import br.event.model.Atividade;
+import br.event.model.SubEvento;
 import br.event.util.JpaUtil;
 
 /**
@@ -20,7 +23,7 @@ import br.event.util.JpaUtil;
  * @since 
  * @version 1.0
  */
-public class AtividadeDAO {
+public class AtividadeDAO extends GenericDAO {
 
 	private static AtividadeDAO atividadeDAO;
 	private List<Atividade> atividades;
@@ -35,10 +38,8 @@ public class AtividadeDAO {
 	 * @since 
 	 * @version 1.0
 	 */
-	public static AtividadeDAO getInstance(){
-		if(atividadeDAO == null)
-			atividadeDAO = new AtividadeDAO();
-		return atividadeDAO;
+	public  AtividadeDAO(){
+		super(AtividadeDAO.class);
 	}
 
 	
@@ -53,45 +54,13 @@ public class AtividadeDAO {
 	 * @throws SQLException 
 	 * @throws ClassNotFoundException 
 	 */
-	public List<Atividade> listarTodos() throws ClassNotFoundException, SQLException{
+	public List<Atividade> listarTodos(Long dataAtualizacao) throws ClassNotFoundException, SQLException{
 		
-		
-		Connection conexao = null;
-		
-		try {
-		
-			Query query = fabrica.createNamedQuery("Atividade.ListAll");
-			atividades = query.getResultList();
-					
-//			conexao = ConexaoUtil.getConexao();
-//			atividades = new ArrayList<Atividade>();
-//			StringBuilder sql = new StringBuilder();
-//			sql.append("select * from event_e.TB_ATIVIDADE");
-//			PreparedStatement pstmt = conexao.prepareStatement(sql.toString());
-//			ResultSet rs = pstmt.executeQuery();
-//			
-//			while(rs.next()){
-//				Atividade atividade = new Atividade();
-//				
-//				atividade.setIdAtividade(rs.getInt("ID_ATIVIDADE"));
-//				atividade.setSigla(rs.getString("SIGLA"));
-//				atividade.setTipo(rs.getString("TIPO"));
-//				atividade.setTitulo(rs.getString("TITULO"));
-//				atividade.setDescricao(rs.getString("DESCRICAO"));
-//				atividade.setData(rs.getLong("DATA"));
-//				atividade.setHoraInicio(rs.getLong("HORA_INICIO"));
-//				atividade.setHoraFim(rs.getLong("HORA_FIM"));
-//				atividade.setDtCadastro(rs.getLong("DT_CADASTRO"));
-//				atividade.setDtAlteracao(rs.getLong("DT_ALTERACAO"));
-//				atividades.add(atividade);
-//			}
-			
-		} catch (Exception e) {
-			System.out.println("Erro ao listar as atividades ->> " + e);
-
-			e.printStackTrace();
-		}
-		return atividades;
+		 Map<String, Object> parameters = new HashMap<String, Object>();
+		 parameters.put("dataAtualizacao", dataAtualizacao);
+		 return (List<Atividade>) super.findAnyResult(Atividade.LISTA_ATIVIDADES, parameters);
+		 
 	}
+		
 	
 }

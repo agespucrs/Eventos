@@ -17,10 +17,13 @@ import br.event.model.Atividade;
  */
 public class AtividadeBO {
 	
-	public List<Atividade> listarTodos() throws ClassNotFoundException, SQLException{
+	public List<Atividade> listarTodos(Long dataAtualizacao) throws ClassNotFoundException, SQLException{
 		System.out.println("Gerando Atividade");
 
-		return AtividadeDAO.getInstance().listarTodos();
+		AtividadeDAO dao = new AtividadeDAO();
+		List<Atividade> atividades =  dao.listarTodos(dataAtualizacao);
+		
+		return atividades;
 	}
 	
 }

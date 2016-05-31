@@ -1,5 +1,6 @@
 package br.event.model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 
@@ -21,9 +22,15 @@ import javax.xml.bind.annotation.XmlRootElement;
 @Entity
 @Table(name="TB_ATIVIDADE")
 @NamedQueries({
-	@NamedQuery(name = "Atividade.ListAll", query = "SELECT a FROM Atividade a")
+	@NamedQuery(name = "Atividade.ListAll", query = "SELECT a.idAtividade, a.local.idLocal, a.subEvento.idSubEvento, "
+			+ " a.sigla, a.tipo, a.titulo, a.descricao, a.data, a.horaInicio, a.horaFim, a.dtCadastro, a.dtAlteracao FROM Atividade a"
+			+ " where a.dtAlteracao >= :dataAtualizacao")
 })
-public class Atividade {
+public class Atividade implements Serializable{
+
+	private static final long serialVersionUID = 3450389575468471021L;
+	public static final String LISTA_ATIVIDADES = "Atividades.ListAll";
+	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name="ID_ATIVIDADE")
