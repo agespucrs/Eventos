@@ -16,20 +16,16 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
-import javax.xml.bind.annotation.XmlRootElement;
 
-@XmlRootElement
 @Entity
 @Table(name="TB_ATIVIDADE")
 @NamedQueries({
-	@NamedQuery(name = "Atividade.ListAll", query = "SELECT a.idAtividade, a.local.idLocal, a.subEvento.idSubEvento, "
-			+ " a.sigla, a.tipo, a.titulo, a.descricao, a.data, a.horaInicio, a.horaFim, a.dtCadastro, a.dtAlteracao FROM Atividade a"
-			+ " where a.dtAlteracao >= :dataAtualizacao")
+	@NamedQuery(name = Atividade.LISTA_ATIVIDADES, query = "SELECT new br.event.dto.AtividadeDTO( a.idAtividade, a.local.idLocal, a.subEvento.idSubEvento, a.sigla, a.tipo, a.titulo, a.descricao, a.data, a.horaInicio, a.horaFim, a.dtCadastro, a.dtAlteracao) FROM Atividade a where a.dtAlteracao >= :dataAtualizacao")
 })
 public class Atividade implements Serializable{
 
 	private static final long serialVersionUID = 3450389575468471021L;
-	public static final String LISTA_ATIVIDADES = "Atividades.ListAll";
+	public static final String LISTA_ATIVIDADES = "Atividade.ListAll";
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
@@ -64,7 +60,7 @@ public class Atividade implements Serializable{
 	public Atividade() {
 
 	}
-
+	
 	public int getIdAtividade() {
 		return idAtividade;
 	}
