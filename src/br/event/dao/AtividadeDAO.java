@@ -1,33 +1,24 @@
 package br.event.dao;
 
-import java.sql.Connection;
+import java.io.Serializable;
 import java.sql.SQLException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import javax.persistence.EntityManager;
-import javax.persistence.Query;
-
+import br.event.dto.AtividadeDTO;
 import br.event.model.Atividade;
-import br.event.model.SubEvento;
-import br.event.util.JpaUtil;
 
 /**
- * 
- * Classe responsável por conter os metodos do CRUD
- *
-<<<<<<< HEAD
- * @author 
- * @since 
+ * @author Cassio 
+ * @since 31/05/2016
  * @version 1.0
  */
-public class AtividadeDAO extends GenericDAO {
+public class AtividadeDAO extends GenericDAO<Atividade> implements Serializable  {
 
-	private static AtividadeDAO atividadeDAO;
-	private List<Atividade> atividades;
-	static EntityManager fabrica = JpaUtil.getFactory();
+
+	private static final long serialVersionUID = 8422939125107375085L;
+	
 	
 	/**
 	 * 
@@ -39,26 +30,24 @@ public class AtividadeDAO extends GenericDAO {
 	 * @version 1.0
 	 */
 	public  AtividadeDAO(){
-		super(AtividadeDAO.class);
+		super(Atividade.class);
 	}
 
 	
 	/**
-	 * 
-	 * Método responsável por listar todos os clientes do banco
 	 *
-	 * @return 
-	 * @author  
-	 * @since 
+	 * @author Cassio 
+	 * @since 31/05/2016
 	 * @version 1.0
 	 * @throws SQLException 
 	 * @throws ClassNotFoundException 
 	 */
-	public List<Atividade> listarTodos(Long dataAtualizacao) throws ClassNotFoundException, SQLException{
+	@SuppressWarnings("unchecked")
+	public List<AtividadeDTO> listarTodos(Long dataAtualizacao) {
 		
 		 Map<String, Object> parameters = new HashMap<String, Object>();
 		 parameters.put("dataAtualizacao", dataAtualizacao);
-		 return (List<Atividade>) super.findAnyResult(Atividade.LISTA_ATIVIDADES, parameters);
+		 return (List<AtividadeDTO>) super.findAnyResult(Atividade.LISTA_ATIVIDADES, parameters);
 		 
 	}
 		

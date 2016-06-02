@@ -1,5 +1,6 @@
 package br.event.dao;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -7,12 +8,12 @@ import java.util.Map;
 import br.event.model.SubEvento;
 
 /**
- * @author Cassio 
+ * @author Cássio 
  * @since 203/05/2016
  * @version 1.0
  */
 
-public class SubEventoDAO extends GenericDAO<SubEvento>{
+public class SubEventoDAO extends GenericDAO<SubEvento> implements Serializable {
 
 	private static final long serialVersionUID = 8114381690720477026L;
 	
@@ -23,7 +24,7 @@ public class SubEventoDAO extends GenericDAO<SubEvento>{
 	 * 
 	 * Método responsável por listar todas as Noticias ativas 
 	 *
-	 * @author Cassio 
+	 * @author Cássio 
 	 * @since 23/05/2016
 	 * @version 1.0
 	 */
